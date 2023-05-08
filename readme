@@ -1,0 +1,29 @@
+DOCKER
+
+    build image = docker build -t myimage:0.0.1 .
+    run container = docker run -d --name mycontainer -p 80:80 myimage:0.0.1
+    push image to dockerhub = docker push imagename
+
+KUBERNETES
+
+    create pod = kubectl apply -f helloworld.yaml
+    show pods = kubectl get pods
+    run command inside pod = kubectl exec -it podname command(for example sh for shell)
+    show logs insede pod = kubectl logs podname
+    get some info about a pod = kubectl describe pod podname
+    delete pod = kubectl delete podname
+
+
+# About this app
+This app is the back-end of the a monitoring tool for ifu greenhouse data.
+it get data from 2 different python scripts at the greenhouse, and stores them in a sqllite database.
+The greenhouse-temperature-monitor frontend, gets this data in 3 seconds intervals.
+
+# Important commands (start from the project main directory)
+## uvicorn app.app:app --reload
+starts the app in development mode
+## Docker
+docker build --platform=linux/amd64 -t dev4gapkit/myimage .
+docker push dev4gapkit/myimage      
+docker pull dev4gapkit/myimage    
+docker run -d --name greenhouse-backend -p 8080:80 dev4gapkit/myimage 

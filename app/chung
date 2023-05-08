@@ -1,0 +1,13 @@
+class TemperaturesRoot(Base):
+    __tablename__ = "Temperatures"
+
+    datetime = Column(String, primary_key=True, index=True)
+    date = Column(String)
+    time = Column(String)
+    subData = relationship("TemperaturesSub", back_populates="rootData")
+
+class TemperaturesSub(Base):
+    __tablename__ = "TemperaturesSub"
+    cellname = Column(String)
+    temperatur = Column(float)    
+    rootData = relationship("TemperaturesRoot", back_populates="subData")
